@@ -20,7 +20,8 @@ public class CitaMedicaSB {
 		Integer valorDescuento = ph.calcularDescuento();
 		System.out.println("Valor descuento: "+ valorDescuento);
 		
-		this.medico=mh;
+		this.medico = mh;
+		this.paciente = ph;
 		
 		this.guardarCita(this);
 	}

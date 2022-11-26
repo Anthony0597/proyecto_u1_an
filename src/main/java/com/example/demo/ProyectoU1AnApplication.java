@@ -15,7 +15,11 @@ public class ProyectoU1AnApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PacienteTerceraEdadSB pacienteTESB;
+	@Autowired
+	private PacienteCancerSB cancerSB;
+	@Autowired
 	private CitaMedicaSB cita;
+	@Autowired
 	private MedicoSB medico;
 	
 	public static void main(String[] args) {
@@ -31,13 +35,17 @@ public class ProyectoU1AnApplication implements CommandLineRunner{
 		pacienteTESB.setNombre("Manuel");
 		pacienteTESB.setTipo("TE");
 		
+		cancerSB.setCedula("4513212");
+		cancerSB.setNombre("Daniel");
+		cancerSB.setTipo("C");
+		
 		medico.setCedula("24251468");
 		medico.setNombre("Maria");
 		
 		System.out.println(medico);
-		System.out.println(pacienteTESB);
+		System.out.println(cancerSB);
 		
-		cita.agendar(medico, pacienteTESB, "123123", LocalDateTime.of(2022, 12, 2, 8, 30));
+		cita.agendar(medico, cancerSB, "123123", LocalDateTime.of(2022, 12, 2, 8, 30));
 		
 	}
 
