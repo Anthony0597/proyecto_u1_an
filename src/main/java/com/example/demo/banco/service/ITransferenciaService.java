@@ -1,5 +1,14 @@
 package com.example.demo.banco.service;
 
-public interface ITransferenciaService {
+import java.math.BigDecimal;
+import java.util.List;
 
+import com.example.demo.banco.modelo.Transferencia;
+
+public interface ITransferenciaService {
+	
+	public List<Transferencia> buscarReporte();
+	public void realizar(String numeroOrigen, String nuemroDestino, BigDecimal monto);
+	
+	//CRUD contruir
 }
