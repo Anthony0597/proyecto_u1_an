@@ -41,6 +41,15 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 	@Override
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
+		
+		CuentaBancaria cuenta = null;
+		for (CuentaBancaria cb : baseCuentas){
+			if(cb.getNumero().equals(cuentaBancaria.getNumero())) {
+				cuenta=cb;
+			}
+		}
+		baseCuentas.remove(cuenta);
+		baseCuentas.add(cuentaBancaria);
 		System.out.println("Se actualiza la cuenta: "+cuentaBancaria);
 	}
 

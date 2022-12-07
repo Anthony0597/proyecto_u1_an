@@ -37,7 +37,7 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
 	@Override
 	public List<Transferencia> buscarTodos() {
 		// TODO Auto-generated method stub
-		return null;
+		return baseDatos;
 	}
 
 }
