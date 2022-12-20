@@ -26,7 +26,7 @@ public class PropietarioServiceImpl implements IPropietarioService {
 	@Override
 	public Propietario buscar(String cedula) {
 		// TODO Auto-generated method stub
-		return this.buscar(cedula);
+		return this.propietarioRepository.buscar(cedula);
 	}
 
 }

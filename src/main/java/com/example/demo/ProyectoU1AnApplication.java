@@ -4,12 +4,14 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IMatriculaNuevaService;
 import com.example.demo.ejercicio1.service.IMatriculaService;
 import com.example.demo.ejercicio1.service.IPropietarioService;
 import com.example.demo.ejercicio1.service.IVehiculoService;
@@ -21,8 +23,14 @@ public class ProyectoU1AnApplication implements CommandLineRunner{
 	private IVehiculoService vehiculoService;
 	@Autowired
 	private IPropietarioService propietarioService;
+	
+	@Qualifier("pesado")
 	@Autowired
-	private IMatriculaService matriculaService;
+	private IMatriculaNuevaService iMatriculaServicePesado;
+	
+	@Qualifier("liviano")
+	@Autowired
+	private IMatriculaNuevaService iMatriculaServiceLiviano;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1AnApplication.class, args);
@@ -52,8 +60,14 @@ public class ProyectoU1AnApplication implements CommandLineRunner{
 		
 		this.propietarioService.guardar(propietario);
 		
+		if (vehi.getTipo().equals("P")){
+			this.iMatriculaServicePesado.generar(propietario.getCedula(), vehi.getPlaca());
+		}else {
+			this.iMatriculaServiceLiviano.generar(propietario.getCedula(), vehi.getPlaca());
+		}
+		
 		//Opción 3:
-		this.matriculaService.generar(propietario.getCedula(), vehi.getPlaca());
+		
 	}
 
 }

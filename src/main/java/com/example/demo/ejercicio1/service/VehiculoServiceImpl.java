@@ -15,7 +15,7 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	@Override
 	public Vehiculo buscar(String placa) {
 		// TODO Auto-generated method stub
-		return this.buscar(placa);
+		return this.vehiculoRepository.buscar(placa);
 	}
 
 	@Override
