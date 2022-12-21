@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.ejercicio1.modelo.Propietario;
 import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IGestorMatriculaService;
 import com.example.demo.ejercicio1.service.IMatriculaNuevaService;
 import com.example.demo.ejercicio1.service.IMatriculaService;
 import com.example.demo.ejercicio1.service.IPropietarioService;
@@ -32,6 +33,9 @@ public class ProyectoU1AnApplication implements CommandLineRunner{
 	@Autowired
 	private IMatriculaNuevaService iMatriculaServiceLiviano;
 	
+	@Autowired
+	private IGestorMatriculaService gestorMatriculaService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1AnApplication.class, args);
 	}
@@ -42,13 +46,13 @@ public class ProyectoU1AnApplication implements CommandLineRunner{
 		Vehiculo vehi= new Vehiculo();
 		vehi.setMarca("Toyota");
 		vehi.setPlaca("PDG4596");
-		vehi.setPrecio(new BigDecimal(500));
+		vehi.setPrecio(new BigDecimal(20000));
 		vehi.setTipo("P");
 		
 		this.vehiculoService.crear(vehi);
 		
 		vehi.setMarca("Toyota");
-		vehi.setPrecio(new BigDecimal(3000));
+		vehi.setPrecio(new BigDecimal(10000));
 		this.vehiculoService.modificar(vehi);
 		
 		//Opción 2:
@@ -59,15 +63,10 @@ public class ProyectoU1AnApplication implements CommandLineRunner{
 		propietario.setFechaNacimiento(LocalDateTime.of(1999, 6, 17, 8, 45));
 		
 		this.propietarioService.guardar(propietario);
-		
-		if (vehi.getTipo().equals("P")){
-			this.iMatriculaServicePesado.generar(propietario.getCedula(), vehi.getPlaca());
-		}else {
-			this.iMatriculaServiceLiviano.generar(propietario.getCedula(), vehi.getPlaca());
-		}
-		
+				
 		//Opción 3:
 		
+		this.gestorMatriculaService.matricular(propietario.getCedula(),	vehi.getPlaca());
 	}
 
 }
